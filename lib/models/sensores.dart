@@ -1,15 +1,31 @@
 class Sensor {
-  int id;
-  String nome;
-  String tipo;
-  double valor;
-  String unidade;
+  final int? id;
+  final String nome;
+  final String tipo;
+  final String unidade;
 
   Sensor({
-    required this.id,
+    this.id,
     required this.nome,
     required this.tipo,
-    required this.valor,
     required this.unidade,
   });
+
+  factory Sensor.fromJson(Map<String, dynamic> json) {
+    return Sensor(
+      id: json['id'],
+      nome: json['nome'] ?? '',
+      tipo: json['tipo'] ?? '',
+      unidade: json['unidade'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      if (id != null) 'id': id,
+      'nome': nome,
+      'tipo': tipo,
+      'unidade': unidade,
+    };
+  }
 }

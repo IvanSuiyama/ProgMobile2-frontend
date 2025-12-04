@@ -1,14 +1,25 @@
-// lib/models/usuario.dart
 class Usuario {
-  int id;
-  String nome;
-  String email;
-  String senha;
+  final int? id;
+  final String nome;
+  final String email;
+  final String? senha; // Opcional para exibição
 
-  Usuario({
-    required this.id,
-    required this.nome,
-    required this.email,
-    required this.senha,
-  });
+  Usuario({this.id, required this.nome, required this.email, this.senha});
+
+  factory Usuario.fromJson(Map<String, dynamic> json) {
+    return Usuario(
+      id: json['id'],
+      nome: json['nome'] ?? '',
+      email: json['email'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      if (id != null) 'id': id,
+      'nome': nome,
+      'email': email,
+      if (senha != null) 'senha': senha,
+    };
+  }
 }

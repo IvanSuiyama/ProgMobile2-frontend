@@ -10,13 +10,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Estação Meteorológica',
-      
+
       // Rota inicial
       initialRoute: AppRoutes.login,
-      
+
       // Todas as rotas definidas no arquivo separado
       routes: AppRoutes.getRoutes(),
-      
+
+      // Para rotas com argumentos
+      onGenerateRoute: AppRoutes.onGenerateRoute,
+
       debugShowCheckedModeBanner: false,
     );
   }
