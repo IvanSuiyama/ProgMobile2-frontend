@@ -136,7 +136,7 @@ class _SensoresCardState extends State<SensoresCard> {
                       );
                       _carregarSensores();
                     },
-                    child: Text('Ver Todos'),
+                    child: Text('Cadastrar Sensor'),
                   ),
               ],
             ),

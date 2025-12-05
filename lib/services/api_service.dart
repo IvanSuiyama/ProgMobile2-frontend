@@ -22,15 +22,22 @@ class ApiService {
 
   // POST request
   static Future<Map<String, dynamic>> post(
-    String endpoint,
-    Map<String, dynamic> data,
-  ) async {
+    String endpoint, {
+    Map<String, dynamic>? data,
+    Map<String, String>? queryParams,
+  }) async {
     try {
+      Uri uri = Uri.parse('$baseUrl$endpoint');
+
+      if (queryParams != null) {
+        uri = uri.replace(queryParameters: queryParams);
+      }
+
       final response = await http
           .post(
-            Uri.parse('$baseUrl$endpoint'),
+            uri,
             headers: {'Content-Type': 'application/json'},
-            body: jsonEncode(data),
+            body: data != null ? jsonEncode(data) : null,
           )
           .timeout(Duration(seconds: 10));
 

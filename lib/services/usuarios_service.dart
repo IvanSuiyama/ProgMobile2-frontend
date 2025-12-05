@@ -52,11 +52,10 @@ class UsuariosService {
     required String senha,
   }) async {
     try {
-      final response = await ApiService.post('/usuarios/', {
-        'nome': nome,
-        'email': email,
-        'senha': senha,
-      });
+      final response = await ApiService.post(
+        '/usuarios/',
+        data: {'nome': nome, 'email': email, 'senha': senha},
+      );
 
       if (response['success']) {
         return {

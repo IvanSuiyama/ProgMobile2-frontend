@@ -8,8 +8,8 @@ class ValoresSensorService {
   }) async {
     try {
       final response = await ApiService.post(
-        '/valores/$idSensor?valor=$valor',
-        {},
+        '/valores/$idSensor',
+        queryParams: {'valor': valor.toString()},
       );
 
       if (response['success']) {

@@ -36,7 +36,7 @@ class AlertasService {
     required String nome,
   }) async {
     try {
-      final response = await ApiService.post('/alertas/', {'nome': nome});
+      final response = await ApiService.post('/alertas/', data: {'nome': nome});
 
       if (response['success']) {
         return {

@@ -9,20 +9,21 @@ class SensoresService {
     required String unidade,
   }) async {
     try {
-      final response = await ApiService.post('/sensores/', {
-        'nome': nome,
-        'tipo': tipo,
-        'unidade': unidade,
-      });
+      final queryParams = {'nome': nome, 'tipo': tipo, 'unidade': unidade};
 
-      if (response['success']) {
+      final response = await ApiService.post(
+        '/sensores/',
+        queryParams: queryParams,
+      );
+
+      if (response['success'] && response['data'] != null) {
         return {
           'success': true,
           'sensor': Sensor.fromJson(response['data']),
           'message': 'Sensor criado com sucesso',
         };
       } else {
-        return response;
+        return {'success': false, 'error': 'Erro ao criar sensor'};
       }
     } catch (e) {
       return {'success': false, 'error': e.toString()};
